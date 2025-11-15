@@ -15,16 +15,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-object Dependency {
-    object Kotlin {
-        const val Version = "1.9.23"
-    }
+package io.github.monun.tap.v1_21.protocol
 
-    object Dokka {
-        const val Version = "1.8.20"
-    }
+import io.github.monun.tap.protocol.PacketContainer
+import net.minecraft.network.protocol.Packet
+import org.bukkit.craftbukkit.entity.CraftPlayer
+import org.bukkit.entity.Player
 
-    object Paper {
-        const val Version = "1.21"
+
+class NMSPacketContainer(private val packet: Packet<*>) : PacketContainer {
+    override fun sendTo(player: Player) {
+        (player as CraftPlayer).handle.connection.send(packet, null)
     }
 }

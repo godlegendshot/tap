@@ -1,7 +1,7 @@
 import io.papermc.paperweight.tasks.RemapJar
 
 plugins {
-    id("io.papermc.paperweight.userdev") version "1.5.5" apply false
+    id("io.papermc.paperweight.userdev") version "1.7.1" apply false
 }
 
 subprojects {
@@ -32,3 +32,5 @@ coreReobfJar {
 coreSourcesJar {
     from(subprojects.map { it.sourceSets["main"].allSource })
 }
+
+
