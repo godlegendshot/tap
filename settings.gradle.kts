@@ -17,4 +17,4 @@ if (dongleFile.exists()) {
 }
 
 val publish = "$prefix-publish"
-if (file(publish).exists()){} //include(publish)
+if (file(publish).exists()) include(publish)

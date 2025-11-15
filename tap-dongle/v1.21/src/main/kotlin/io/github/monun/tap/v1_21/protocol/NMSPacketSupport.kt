@@ -18,9 +18,7 @@
 package io.github.monun.tap.v1_21.protocol
 
 import io.github.monun.tap.protocol.*
-import io.netty.buffer.Unpooled
 import it.unimi.dsi.fastutil.ints.IntArrayList
-import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.network.protocol.game.*
 import net.minecraft.world.phys.Vec3
 import org.bukkit.craftbukkit.entity.CraftEntity
@@ -88,7 +86,7 @@ class NMSPacketSupport : PacketSupport {
         nmsEntity.setOnGround(onGround)
 
         // 패킷 생성 (1.21 유일한 public 생성자)
-        val packet = net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket(nmsEntity)
+        val packet = ClientboundTeleportEntityPacket(nmsEntity)
         return NMSPacketContainer(packet)
     }
 
@@ -162,7 +160,7 @@ class NMSPacketSupport : PacketSupport {
         val nmsEntity = world.getEntity(entityId)
             ?: throw IllegalArgumentException("Entity with id $entityId not found for entityStatus")
 
-        val packet = ClientboundEntityEventPacket(nmsEntity, data.toByte())
+        val packet = ClientboundEntityEventPacket(nmsEntity, data)
         return NMSPacketContainer(packet)
     }
     override fun entityAnimation(

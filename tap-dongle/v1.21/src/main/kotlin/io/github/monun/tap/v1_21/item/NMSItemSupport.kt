@@ -21,7 +21,6 @@ import io.github.monun.tap.item.ItemSupport
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.item.ItemStack
-import net.minecraft.server.level.ServerPlayer
 import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.CraftEquipmentSlot
 import org.bukkit.craftbukkit.CraftServer
