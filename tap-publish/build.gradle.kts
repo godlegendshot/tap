@@ -49,7 +49,7 @@
 //            pom {
 //                name.set(target.name)
 //                description.set("PaperMC extension library written in Kotlin")
-//                url.set("https://github.com/monun/${rootProject.name}")
+//                url.set("https://github.com/godlegendshot/${rootProject.name}")
 //
 //                licenses {
 //                    license {
