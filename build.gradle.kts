@@ -1,5 +1,6 @@
 plugins {
     idea
+    `maven-publish`
     kotlin("jvm") version Dependency.Kotlin.Version
     kotlin("plugin.serialization") version Dependency.Kotlin.Version apply false
     id("org.jetbrains.dokka") version Dependency.Dokka.Version apply false
@@ -70,5 +71,27 @@ idea {
         excludeDirs.add(file(".server"))
         excludeDirs.addAll(allprojects.map { it.buildDir })
         excludeDirs.addAll(allprojects.map { it.file(".gradle") })
+    }
+}
+
+listOf("api", "core").forEach { projectName ->
+    project(":${rootProject.name}-$projectName") {
+        apply(plugin = "maven-publish")
+
+        afterEvaluate {
+            configure<PublishingExtension> {
+                publications {
+                    create<MavenPublication>("maven") {
+                        groupId = project.group.toString()
+                        artifactId = "${rootProject.name}-$projectName"
+                        version = project.version.toString()
+                        from(components["java"])
+
+                        artifact(tasks["sourcesJar"])
+                        artifact(tasks["dokkaJar"])
+                    }
+                }
+            }
+        }
     }
 }
